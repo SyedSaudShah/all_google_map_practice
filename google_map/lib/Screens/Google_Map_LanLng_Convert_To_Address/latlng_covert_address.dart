@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
 class LagLngConvertToAddress extends StatefulWidget {
@@ -12,7 +11,7 @@ class LagLngConvertToAddress extends StatefulWidget {
 
 class _LagLngConvertToAddressState extends State<LagLngConvertToAddress> {
   String stRing = "", stdAdd = "";
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,11 +26,17 @@ class _LagLngConvertToAddressState extends State<LagLngConvertToAddress> {
                 color: Colors.blueGrey,
                 child: const Text("LatLngConvertToAddress"),
                 onPressed: () async {
-                  List<Location> locations =await locationFromAddress("Gronausestraat 710, Enschede");
-                  List<Placemark> placemarks = await placemarkFromCoordinates(52.2165157, 6.9437819);
+                  List<Location> locations =
+                      await locationFromAddress("Gronausestraat 710, Enschede");
+                  List<Placemark> placemarks =
+                      await placemarkFromCoordinates(52.2165157, 6.9437819);
                   setState(() {
-                    stRing =locations.last.latitude.toString()+" "+locations.last.longitude.toString();
-                    stdAdd = placemarks.last.country.toString()+"  "+placemarks.last.locality.toString();
+                    stRing = locations.last.latitude.toString() +
+                        " " +
+                        locations.last.longitude.toString();
+                    stdAdd = placemarks.last.country.toString() +
+                        "  " +
+                        placemarks.last.locality.toString();
                   });
                 }),
           ),
